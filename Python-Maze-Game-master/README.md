@@ -1,10 +1,6 @@
-## Project Name: Yet Another Maze 
+## Project Name: 迷宮寶石王​
 ## Creators: Jian (Henry) Wee and Darren Tran
 ## Modifier: D1349095顏宏育、D1349362張政諺​、D1348863黃鼎堯、D1349290許仲佑 
-
-# DESCRIPTION
-This is a final project for the CMPUT 275 course.
-Yet another maze game, there are several options included under settings:
 	
 **HOW TO MOVE:**
 * Use UP and DOWN arrow keys to navigate around main screen and settings. 
