@@ -285,7 +285,7 @@ def runGame(grid_size, side_length, mode):
             screen.blit(timer_text, (size[0] - 150, size[1] - 40))
         
         # Check for game over (time limit exceeded)
-        if elapsed_time >= 1 and not game_failed and not game_won:
+        if elapsed_time >= 180 and not game_failed and not game_won:
             game_failed = True
             game_over_time = pygame.time.get_ticks()
         
