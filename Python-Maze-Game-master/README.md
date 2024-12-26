@@ -1,5 +1,6 @@
 ## Project Name: Yet Another Maze 
 ## Creators: Jian (Henry) Wee and Darren Tran
+## Modifier: D1349095顏宏育、D1349362張政諺​、D1348863黃鼎堯、D1349290許仲佑 
 
 # DESCRIPTION
 This is a final project for the CMPUT 275 course.
