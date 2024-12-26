@@ -1,6 +1,8 @@
 ## Project Name: 迷宮寶石王​
 ## Creators: Jian (Henry) Wee and Darren Tran
 ## Modifier: D1349095顏宏育、D1349362張政諺​、D1348863黃鼎堯、D1349290許仲佑 
+##哲維大帥哥
+
 	
 **HOW TO MOVE:**
 * Use UP and DOWN arrow keys to navigate around main screen and settings. 
