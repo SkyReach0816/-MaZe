@@ -9,7 +9,7 @@ import queue
 from collections import deque
 import os
 
-# Colors
+# 顏色
 BLACK = (0,0,0)
 GRAY = (100,100,100)
 WHITE = (255,255,255)
@@ -22,12 +22,12 @@ GREEN = (0,255,0)
 YELLOW = (255,255,0)
 
 JEWEL_COLORS = [
-    (255, 0, 0),    # Red
-    (255, 165, 0),  # Orange 
-    (255, 255, 0),  # Yellow
-    (0, 255, 0),    # Green
-    (0, 0, 255),    # Blue
-    (128, 0, 128)   # Purple
+    (255, 0, 0),    # 紅色
+    (255, 165, 0),  # 橙色
+    (255, 255, 0),  # 黃色
+    (0, 255, 0),    # 綠色
+    (0, 0, 255),    # 藍色
+    (128, 0, 128)   # 紫色
 ]
 
 class Character:
@@ -50,9 +50,9 @@ class Character:
         return self.current_point
 
     def move_character_smooth(self, next_point, steps):
-        self.draw_position(self.bg_color)  # Clear previous position
+        self.draw_position(self.bg_color)  # 清除前一個位置
         self.current_point = next_point
-        self.draw_position()  # Draw at new position
+        self.draw_position()  # 在新位置繪製
 
     def draw_position(self, color=None):
         if color is None:
@@ -189,11 +189,11 @@ def runGame(grid_size, side_length, mode):
     size = (grid_size * (side_length + border_width) + border_width,
             grid_size * (side_length + border_width) + border_width + 50)
     screen = pygame.display.set_mode(size)
-    pygame.display.set_caption("Maze Game")
+    pygame.display.set_caption("迷宮遊戲")
     
     vertices = maze.get_vertices()
     
-    # Create jewels
+    # 創建寶石
     jewels = []
     available_positions = [(x, y) for x in range(grid_size) for y in range(grid_size)]
     available_positions.remove((0, 0))
@@ -210,12 +210,12 @@ def runGame(grid_size, side_length, mode):
     clock = pygame.time.Clock()
     cooldown = 100
     start_timer = pygame.time.get_ticks()
-    game_start_time = pygame.time.get_ticks()  # 记录游戏开始时间
+    game_start_time = pygame.time.get_ticks()  # 記錄遊戲開始時間
     
-    victory_time = None  # 用于记录玩家获胜的时间
-    game_over_time = None  # 用于记录游戏失败的时间
-    game_won = False  # 标记玩家是否赢得了游戏
-    game_failed = False  # 标记玩家是否失败
+    victory_time = None  # 用於記錄玩家獲勝的時間
+    game_over_time = None  # 用於記錄遊戲失敗的時間
+    game_won = False  # 標記玩家是否贏得了遊戲
+    game_failed = False  # 標記玩家是否失敗
     
     while carryOn:
         for event in pygame.event.get():
@@ -259,7 +259,7 @@ def runGame(grid_size, side_length, mode):
         screen.fill(BLACK)
         draw_maze(screen, maze, grid_size, WHITE, side_length, border_width)
         
-        # Draw jewels and check collection
+        # 繪製寶石並檢查收集
         for jewel in jewels[:]:
             if jewel.pos == player.get_current_position():
                 player.score += 1
@@ -267,52 +267,52 @@ def runGame(grid_size, side_length, mode):
             else:
                 jewel.draw()
         
-        # Update and draw player
+        # 更新並繪製玩家
         player.update_color()
         player.draw_position()
         
-        # Draw score
+        # 繪製得分
         font = pygame.font.Font(None, 36)
         score_text = font.render(f'Score: {player.score}/45', True, WHITE)
         screen.blit(score_text, (10, size[1] - 40))
         
-        # Calculate elapsed time
-        elapsed_time = (pygame.time.get_ticks() - game_start_time) / 1000  # 秒为单位
+        # 計算經過時間
+        elapsed_time = (pygame.time.get_ticks() - game_start_time) / 1000  # 秒為單位
         
-        # Show timer
+        # 顯示計時器
         if not game_failed:
             timer_text = font.render(f'Time: {elapsed_time:.1f}s', True, WHITE)
             screen.blit(timer_text, (size[0] - 150, size[1] - 40))
         
-        # Check for game over (time limit exceeded)
+        # 檢查遊戲結束（超過時間限制）
         if elapsed_time >= 180 and not game_failed and not game_won:
             game_failed = True
             game_over_time = pygame.time.get_ticks()
         
-        # Show "Game Over" if time limit is exceeded
+        # 顯示 "遊戲結束" 如果超過時間限制
         if game_failed:
-            game_over_text = pygame.font.Font(None, 72).render("GAME OVER", True, RED)
+            game_over_text = pygame.font.Font(None, 72).render("遊戲結束", True, RED)
             screen.blit(game_over_text, (size[0] // 2 - game_over_text.get_width() // 2, size[1] // 2))
             pygame.display.flip()
             
-            # Wait 3 seconds, then show failure image
+            # 等待 3 秒，然後顯示失敗圖片
             if pygame.time.get_ticks() - game_over_time > 3000:
                 carryOn = False
-                failure_image = pygame.image.load("failure_image.png")  # 替换为失败图片路径
+                failure_image = pygame.image.load("failure_image.png")  # 替換為失敗圖片路徑
                 failure_image = pygame.transform.scale(failure_image, (size[0], size[1]))
                 screen.blit(failure_image, (0, 0))
                 pygame.display.flip()
                 pygame.time.delay(1000)
         
-        # Check for victory
+        # 檢查勝利
         if player.score == 45 and not game_failed:
             game_won = True
-            victory_time = pygame.time.get_ticks()  # 记录胜利时的时间
-            victory_text = pygame.font.Font(None, 72).render("VICTORY!", True, GREEN)
+            victory_time = pygame.time.get_ticks()  # 記錄勝利時的時間
+            victory_text = pygame.font.Font(None, 72).render("勝利!", True, GREEN)
             screen.blit(victory_text, (size[0] // 2 - victory_text.get_width() // 2, size[1] // 2))
             pygame.display.flip()
             
-            # 冻结计时器并退出游戏
+            # 凍結計時器並退出遊戲
             pygame.time.delay(3000)  # 等待 3 秒
             carryOn = False
                 
@@ -331,4 +331,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
