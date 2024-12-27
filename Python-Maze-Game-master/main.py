@@ -291,7 +291,7 @@ def runGame(grid_size, side_length, mode):
         
         # 顯示 "遊戲結束" 如果超過時間限制
         if game_failed:
-            game_over_text = pygame.font.Font(None, 72).render("遊戲結束", True, RED)
+            game_over_text = pygame.font.Font(None, 72).render("Game Over", True, RED)
             screen.blit(game_over_text, (size[0] // 2 - game_over_text.get_width() // 2, size[1] // 2))
             pygame.display.flip()
             
@@ -308,7 +308,7 @@ def runGame(grid_size, side_length, mode):
         if player.score == 45 and not game_failed:
             game_won = True
             victory_time = pygame.time.get_ticks()  # 記錄勝利時的時間
-            victory_text = pygame.font.Font(None, 72).render("勝利!", True, GREEN)
+            victory_text = pygame.font.Font(None, 72).render("Victory!", True, GREEN)
             screen.blit(victory_text, (size[0] // 2 - victory_text.get_width() // 2, size[1] // 2))
             pygame.display.flip()
             
