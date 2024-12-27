@@ -189,7 +189,7 @@ def runGame(grid_size, side_length, mode):
     size = (grid_size * (side_length + border_width) + border_width,
             grid_size * (side_length + border_width) + border_width + 50)
     screen = pygame.display.set_mode(size)
-    pygame.display.set_caption("迷宮遊戲")
+    pygame.display.set_caption("迷宮寶石王")
     
     vertices = maze.get_vertices()
     
